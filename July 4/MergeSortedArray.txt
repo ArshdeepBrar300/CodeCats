@@ -1,0 +1,33 @@
+Merge Sorted Array
+
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+
+        int i=m-1,j=nums1.size()-1;
+        while(i>=0){
+            nums1[j--]=nums1[i];i--;
+        }
+        int k=0;i=0;j++;
+        while(j<nums1.size()&&i<nums2.size()){
+            if(nums1[j]<=nums2[i]){
+                nums1[k++]=nums1[j];j++;
+            }
+            else{
+                nums1[k++]=nums2[i];i++;
+
+            }
+        }
+        while(j<nums1.size()){
+            nums1[k++]=nums1[j];j++;
+        }
+        while(i<nums2.size()){
+            nums1[k++]=nums2[i];i++;
+
+        }
+        
+
+        
+    }
+};
