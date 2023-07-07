@@ -1,0 +1,14 @@
+Make Two Array equal by reversing subarray
+
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        vector<int>h(1001,0);
+        for(int i=0;i<target.size();i++) h[target[i]]++;
+        for(int i=0;i<arr.size();i++){
+            if(h[arr[i]]==0) return false;
+            else h[arr[i]]--;
+        }
+        return true;
+    }
+};
