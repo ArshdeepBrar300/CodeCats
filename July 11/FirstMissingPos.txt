@@ -1,0 +1,31 @@
+First Missing Positive
+
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        //approach spaceO(n)
+        // map<int,int>h;int i;
+        // for( i=0;i<nums.size();i++) h[nums[i]]=1;
+        // for( i=1;i<=nums.size();i++){
+        //     if(h[i]!=1){
+        //         return i;
+        //     }
+        // }
+        // return i;
+
+        //approach2
+        int i;
+        for( i=0;i<nums.size();i++){
+            while(nums[i]>0 && nums[i]<=nums.size()&& nums[nums[i]-1]!=nums[i]){
+                swap(nums[nums[i]-1],nums[i]);
+                
+            }
+        }
+        
+        for( i=0;i<nums.size();i++){
+            if(nums[i]!=i+1) return i+1;
+        }
+        return nums.size()+1;
+        
+    }
+};
