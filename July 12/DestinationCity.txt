@@ -1,0 +1,24 @@
+
+Destination City
+
+class Solution {
+public:
+    string destCity(vector<vector<string>>& paths) {
+        set<string>c;
+        for(int i=0;i<paths.size();i++){
+            c.insert(paths[i][0]);
+            c.insert(paths[i][1]);
+        }
+        map<string,int>m;
+        for(int i=0;i<paths.size();i++){
+            m[paths[i][0]]=1;
+        }
+        for(auto i:c){
+            if(m[i]==1) continue;
+            return i;
+        }
+        return "";
+
+        
+    }
+};

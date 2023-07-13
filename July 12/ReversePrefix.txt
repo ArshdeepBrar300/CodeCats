@@ -1,0 +1,22 @@
+Reverse Prefix Word
+
+class Solution {
+public:
+    string reversePrefix(string word, char ch) {
+        string s="";int flag=0;
+        for(int i=0;i<word.size();i++){
+            if(!flag){
+                s=word[i]+s;
+            }
+            else{
+                s=s+word[i];
+            }
+            if(word[i]==ch){
+                flag=1;
+            }
+        }
+        if(!flag) return word;
+        return s;
+        
+    }
+};
