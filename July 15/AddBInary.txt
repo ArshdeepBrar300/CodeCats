@@ -1,0 +1,30 @@
+Add Binary
+
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+       int len=a.length();
+       int len2=b.length();int carry=0,sum=0;
+       string ans="";
+       int i=len-1,j=len2-1,val;
+       while(i!=-1||j!=-1||carry){
+           if(i>=0 ){
+           sum+=(a[i]-'0');i--;}
+           if(j>=0){
+           sum+=(b[j]-'0');j--;}
+           sum+=carry;
+           val=sum;
+           if(sum==2)
+                val=0;
+            if(sum==3)
+               val=1;
+          ans=to_string(val)+ans;carry=0;
+          if(sum==2||sum==3)
+            carry=1;
+        sum=0;
+            cout<<ans<<" ";
+            
+       }
+       return ans;}
+};

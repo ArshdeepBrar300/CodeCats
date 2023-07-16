@@ -1,0 +1,32 @@
+Remove Duplicates Letters
+
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        stack<char>st;
+        vector<int>visit(26,0);
+        vector<int>hash(26,0);
+        for(int i=0;i<s.size();i++)
+            hash[s[i]-97]++;
+
+        for(int i=0;i<s.size();i++){
+            hash[s[i]-97]--;
+            if(visit[s[i]-97]) continue;
+          
+            while(!st.empty() && st.top()>s[i] && hash[st.top()-97]>0){
+                visit[st.top()-97]=0;
+                st.pop();
+            } 
+            st.push(s[i]);
+            visit[s[i]-97]=1;
+        }
+         string ans = "";
+        while (st.size() > 0){
+            ans += st.top();
+            st.pop();
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+        
+    }
+};

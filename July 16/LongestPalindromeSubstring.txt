@@ -1,0 +1,64 @@
+Longest Palindromic Substring
+
+#include<string>
+class Solution {
+public:
+
+  bool palin(string s){
+        for(int i=0,j=s.length()-1;i<j;i++,j--){
+            if(s[i]!=s[j])
+                return false;
+        }
+        return true;
+    }
+    
+    string longestPalindrome(string s) {
+       int len=s.length();
+       if(len<=1)
+        return s;
+        int left,right;
+        int oddlength,evenlength;
+        int max=0;
+        string leftstring,rightstring;
+        for(int i=0;i<len;i++){
+            left=i;right=i;
+            while(left>=0 && right<len){
+                if(s[left]==s[right]){
+                left--;right++;}
+                else
+                break;
+            }
+            right--;left++;
+            oddlength=right-left+1;
+            if(oddlength>max){
+                max=oddlength;
+                leftstring=s.substr(left,right-left+1);}
+
+        }
+         for(int i=0;i<len;i++){
+            left=i;right=i+1;
+            while(left>=0 && right<len){
+                if(s[left]==s[right])
+                {left--;right++;}
+                else
+                break;
+            }
+            right--;left++;
+            evenlength=right-left+1;
+            if(evenlength>max){
+                max=oddlength;
+                leftstring=s.substr(left,right-left+1);
+                }
+
+        }
+
+
+    
+        
+       return leftstring;
+
+     
+    
+        
+    }
+};

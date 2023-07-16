@@ -1,0 +1,36 @@
+Count & Say
+
+class Solution {
+public:
+
+    string funct(string p){
+        string s="";int count=1;
+        int len=p.length();
+        for(int i=0;i<len;i++){
+            int j=i+1;
+            
+            while(j<len &&p[j]==p[i])
+            {
+                count++;j++;
+            }
+            i=j-1;
+            s+=to_string(count)+p[i];
+            count=1;
+
+        }
+    return s;
+
+        
+    }
+    string countAndSay(int n) {
+        if(n==1){
+            return "1";
+
+        }
+        else{
+            string p=countAndSay(n-1);
+            return (funct(p));
+        }
+        
+    }
+};

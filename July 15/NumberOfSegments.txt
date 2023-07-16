@@ -1,0 +1,24 @@
+Number of Segments in String
+
+class Solution {
+public:
+    int countSegments(string s) {
+        int ans=0,flag=0;
+        if(s.empty()) return 0;
+   
+        
+        for(int i=0;i<s.size();i++){
+            
+            if(s[i]!=' ') flag=1;
+            if(flag){
+                ans++;flag=0;
+                while(s[i]!=' ' && i<s.size()) i++;
+                i--;
+                
+            }
+            
+        }
+        return ans;
+        
+    }
+};
