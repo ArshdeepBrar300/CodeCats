@@ -1,0 +1,51 @@
+Intersection of Two Linked Lists
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *p=headA,*q=headB;int c1=0,c2=0;
+        if(! headA || !headB)
+            return NULL;
+        while(p){
+            c1++;p=p->next;
+        }
+        while(q){
+            c2++;q=q->next;
+        }
+        if(c1==1 &&c2==1 && headA->val==headB->val){
+            return headA;
+        }
+        int l=abs(c2-c1);
+        ListNode *t,*t2;
+        if(c2>c1){
+            t=headB;
+            t2=headA;
+        }
+        else if(c1>=c2){
+            t=headA;t2=headB;
+        }
+        while(l>0){
+            t=t->next;
+            l--;
+        }
+        while(t||t2){
+            if(t ==t2)
+                return t;
+            t=t->next;t2=t2->next;
+        }
+
+
+        return NULL;
+    }
+        
+    
+};
