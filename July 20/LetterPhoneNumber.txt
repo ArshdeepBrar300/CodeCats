@@ -1,0 +1,35 @@
+Letter Combination of Phone Number
+
+class Solution {
+public:
+
+
+    void phone(string digits,string *mapping,vector<string>& finals,string output,int index){
+
+        if(index>=digits.length()){
+            finals.push_back(output);
+            return;}
+    int num=digits[index]-'0';
+    string m=mapping[num-2];
+    for(int i=0;i<m.length();i++){
+            output.push_back(m[i]);
+            phone(digits,mapping,finals,output,index+1);
+            output.pop_back();
+    
+    }
+    
+        
+    }
+    vector<string> letterCombinations(string digits) {
+        int l=digits.length();
+        vector<string>ss;
+        if(l==0)
+        return ss;
+        string s="";
+        string arr[8]={"abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        phone(digits,arr,ss,s,0);
+        return ss;
+      
+        
+    }
+};

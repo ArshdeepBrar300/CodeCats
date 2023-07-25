@@ -1,0 +1,131 @@
+Repeated String Match
+
+class Solution {
+public:
+
+
+    vector<int>lps(string s){
+           int i=0,j=1;
+           vector<int>ans(s.length(),0);
+        while(j<s.length()){
+            if(s[i]==s[j]){
+                i++;
+                ans[j]=i;
+                j++;
+            }
+            else{
+                if(i==0){
+                    ans[j]=0;
+                    j++;
+                }
+                else{
+                    i=ans[i-1];
+
+                }
+            }
+        }
+        return ans;
+
+    }
+    vector<int> kmp(string a,string b){
+        vector<int> temp=lps(a);
+            vector<int>ans;
+     
+        int i=0,j=0;
+       while(j<b.length()){
+          
+
+       
+        if(a[i]==b[j]){
+            i++;j++;
+        }
+        else{
+            if(i==0&&a[i]!=b[j]) j++;
+            else
+           i=temp[i-1];
+       }
+        if(i==a.length()){
+            
+            ans.push_back(  j-i);
+            i=0;
+        }
+        
+       
+    }
+    if(ans.size()==0) ans.push_back(-1);
+    return ans;
+  
+    }
+    int repeatedStringMatch(string a, string b) {
+        vector<int> ans;
+        int res=0;
+
+        //approach1
+        // if(a.length()<=b.length()){
+
+        //     ans=kmp(a,b);
+        //     string p=a;
+
+        //     if(p.find(b)!=-1){
+        //         return  1;
+        //     }
+        //     p=a+a;
+        //      if(p.find(b)!=-1){
+        //         return  2;
+        //     }
+
+        //     if(ans[0]==-1) return -1;
+
+        //     for(int i=0;i<ans.size()-1;i++){
+        //         if(ans[i+1]-ans[i]!=a.length()) return -1;
+               
+        //     }
+        //     int j=0;
+        //     p="";
+        //     while(j<ans.size())
+        //     {
+        //         p=p+a;j++;
+        //     }
+        //     if(ans[0]!=0){ p=p+a;res++;}
+        //     if(ans[ans.size()-1]!=b.length()-a.length()) {p=p+a;res++;}
+        //     // cout<<p;
+        //     if(p.find(b)!=-1){
+        //         return  ans.size()+res;
+        //     }
+        //     else return -1;
+
+
+
+
+        // }
+      
+        // else{
+        // ans=kmp(b,a);
+        // if(ans[0]!=-1) return 1;
+        
+        // ans=kmp(b,a+a);
+        
+        // if(ans[0]!=-1) return 2;
+      
+        // }
+        //   return -1;
+
+        //approach2
+    string str = a;
+        while(a.length()<b.length())a.append(str);
+        
+        int count = a.length() / str.length();
+        
+        ans=kmp(b,a);
+        if(ans[0]!=-1) return count;
+        
+        // append another a 
+        a.append(str);
+        count++;
+        ans=kmp(b,a);
+        // check if b is in a , if not then not possible
+        return ans[0]!=-1 ? count : -1;
+        
+        
+    }
+};

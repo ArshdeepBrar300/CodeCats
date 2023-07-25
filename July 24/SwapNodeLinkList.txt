@@ -1,0 +1,54 @@
+Swapping Nodes In Link List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+
+        ListNode* f=head;
+        ListNode* s=head;
+        while(--k){
+            f=f->next;
+        }
+        ListNode*temp=f;
+        while(f->next!=NULL){
+            s=s->next;
+            f=f->next;
+        }
+        int v=temp->val;
+        temp->val=s->val;
+        s->val=v;
+        // int c=0;
+        // while(p!=NULL){
+        //     p=p->next;c++;
+        // }
+        // int v1,v2;
+        // p=head;
+        // int count=1;
+        // while(count<k){
+        //     p=p->next;
+        //     count++;
+        // }
+        // v1=p->val;
+        // ListNode *t=p;
+        // count=c-k+1;
+        // p=head;c=1;
+        // while(c<count){
+        //     p=p->next;
+        //     c++;
+
+        // }
+        // t->val=p->val;
+        // p->val=v1;
+        return head;
+    }
+};

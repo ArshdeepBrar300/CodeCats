@@ -1,0 +1,62 @@
+Longest happy Prefix
+
+
+
+class Solution {
+public:
+
+    vector<int>lps(string s){
+           int i=0,j=1;
+           vector<int>ans(s.length(),0);
+        while(j<s.length()){
+            if(s[i]==s[j]){
+                i++;
+                ans[j]=i;
+                j++;
+            }
+            else{
+                if(i==0){
+                    ans[j]=0;
+                    j++;
+                }
+                else{
+                    i=ans[i-1];
+
+                }
+            }
+        }
+        return ans;
+
+    }
+    // vector<int> kmp(string a,string b){
+    //     vector<int> temp=lps(a);
+    //         vector<int>ans;
+     
+    //     int i=0,j=0;
+    //    while(j<b.length()){
+          
+
+       
+    //     if(a[i]==b[j]){
+    //         i++;j++;
+    //     }
+    //     else{
+    //         if(i==0&&a[i]!=b[j]) j++;
+    //         else
+    //        i=temp[i-1];
+    //    }
+    //     if(i==a.length()){
+            
+    //         ans.push_back(  j-i);
+    //         i=0;
+    //     }
+        
+       
+    // }
+    string longestPrefix(string s) {
+        vector<int>r=lps(s);
+        int ans=s.length()-r.back();
+        return s.substr(ans);
+        
+    }
+};

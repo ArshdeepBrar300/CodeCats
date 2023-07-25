@@ -1,0 +1,65 @@
+Reorder List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *head3;
+    void reverse(ListNode *prev, ListNode *cur){
+        if(cur){
+            reverse(cur,cur->next);
+            cur->next=prev;
+        }
+        else
+        head3=prev;
+    }
+
+    void print(ListNode *h){
+        if(h){
+        cout<<h->val;print(h->next);}
+    }
+   
+    void reorderList(ListNode* head) {
+        ListNode *t=new ListNode();
+        ListNode *p=head,*head2=t;int count=0;
+        while(p!=NULL){
+            ListNode *tt=new ListNode(p->val);
+            t->next=tt;
+            count++;
+            t=t->next;
+            p=p->next;
+            
+        }
+        int c=0;
+        head2=head2->next;print(head2);
+        reverse(NULL,head2);
+        print(head3);
+        ListNode *a=head,*b=head3,*m,*n;
+       
+        while(c<count/2){
+            m=a->next;
+            n=b->next;
+            a->next=b;
+            if(count%2==0 && c==count/2-1)
+                b->next=NULL;
+            else
+            b->next=m;
+            a=m;b=n;
+            c++;
+
+        }
+
+        a->next=NULL;
+        
+
+        
+    }
+};
