@@ -1,0 +1,36 @@
+Quick Sort
+
+#include <bits/stdc++.h> 
+
+
+int partition(vector<int>&arr,int s,int end){
+    int pivot=arr[end];
+    int i=s-1;
+    int j=s;
+    while(j<end){
+        if(arr[j]<pivot){
+            i=i+1;
+            swap(arr[i],arr[j]);
+        }
+        j++;
+    }
+    swap(arr[i+1],arr[end]);
+    return i+1;
+
+}
+void quick(vector<int>& arr,int s,int end){
+    if(s<end){
+        int mid=partition(arr,s,end);
+        quick(arr,s,mid-1);
+        quick(arr,mid+1,end);
+    }
+
+}
+vector<int> quickSort(vector<int> arr)
+{
+    int n=arr.size();;
+    quick(arr,0,n-1);
+    return arr;
+
+    // Write your code here.
+}

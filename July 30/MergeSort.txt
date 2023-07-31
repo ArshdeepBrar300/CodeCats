@@ -1,0 +1,51 @@
+Merge Sort
+
+void merge(vector<int>&ar,int n,int ind,int mid){
+
+    vector<int>ar1;vector<int>ar2;
+   for(int i=ind;i<=mid;i++) ar1.push_back(ar[i]);
+   for(int i=mid+1;i<=n;i++) ar2.push_back(ar[i]);
+    
+    int k=ind;
+    int i=0,j=0;
+    while(i<ar1.size() && j<ar2.size()){
+        if(ar1[i]<=ar2[j]){
+            ar[k++]=ar1[i];
+            i++;
+        }
+        else {
+            ar[k++]=ar2[j];
+            j++;
+            
+        }
+    }
+    while(i<ar1.size()){
+        ar[k++]=ar1[i];
+        i++;
+    }
+     while(j<ar2.size()){
+        ar[k++]=ar2[j];
+        j++;
+    }
+
+
+}
+
+void mSort(vector < int > & arr, int n,int i){
+    int mid=(i+n)/2;
+    if(i<n){
+
+        mSort(arr,mid,i);
+        mSort(arr,n,mid+1);
+        merge(arr,n,i,mid);
+    }
+
+}
+
+void mergeSort(vector < int > & arr, int n) {
+    int i=0,j=arr.size()-1;
+    mSort(arr,j,0);
+    // Write your code here.
+
+    
+}
