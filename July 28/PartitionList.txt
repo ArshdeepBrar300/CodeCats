@@ -1,0 +1,94 @@
+Partition List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    void printt(ListNode *head){
+        if(head!=NULL){
+        cout<<head->val;
+        printt(head->next);}}
+    ListNode* partition(ListNode* head, int x) {
+        queue<ListNode*>st;
+        ListNode*p=head,*q=NULL;
+        if(!head)
+            return head;
+        if(x<-100 || x>100){
+            return head;
+        }
+         ListNode* lar = head;
+        while(lar != NULL){
+            if(lar ->val >= x){
+                break;
+            }
+            lar = lar ->next;
+        }
+        while(p && p==head){
+            if(p->val<x)
+            {st.push(p);
+            p=p->next;
+            head=p;
+            }else
+            break;
+        }
+        while(p){
+            if(p->val<x){
+                q->next=p->next;
+                p->next=NULL;
+                st.push(p);
+                p=q->next;continue;
+                }
+            q=p;
+            p=p->next;
+        }
+        printt(head);
+        
+        // ListNode* temp = head;
+        // ListNode* prev = head;
+        // ListNode* back = NULL;
+        // while(temp != NULL){
+        //     temp = temp ->next;
+        //     if(prev ->val >=x){
+        //         back = prev;
+        //     }
+        //     if(prev ->val <x){
+        //         prev ->next = NULL;
+        //         if(back != NULL){
+        //             back ->next = temp;
+        //         }
+        //         st.push(prev);
+        //     }
+        //     prev = temp;
+        // }
+        // ListNode *temp=NULL;
+        
+         ListNode* temp1 = NULL;
+        if(st.empty()==false){
+            ListNode* l = st.front();
+            temp1 = l;
+            st.pop();
+            cout<<"1";
+            while(!st.empty()){
+                
+                l ->next = st.front();
+                st.pop();
+                l = l ->next;
+            }
+            
+            l ->next = lar;
+            return temp1;
+
+        }
+        return head;
+        
+    }
+};

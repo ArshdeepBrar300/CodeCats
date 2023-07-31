@@ -1,0 +1,45 @@
+Remove Nth NOde from End of List
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *p=head;
+        if(!head)
+        return head;
+        int c=1;
+        while(p->next){
+            c++;p=p->next;
+        }
+        int m=c-n+1;
+        c=1;
+        p=head;ListNode *q;
+        while(p){
+            if(p==head && m==c)
+            {
+                head=p->next;
+                delete(p);c++;
+                p=head;break;
+            }
+            else if(m==c){
+                q->next=p->next;
+                delete(p);c++;
+                p=q->next;continue;
+
+            }
+            q=p;
+            p=p->next;c++;
+        }
+        return head;
+        
+    }
+};
